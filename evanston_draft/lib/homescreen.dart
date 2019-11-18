@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:evanston_draft/EventMockData.dart';
 import 'package:evanston_draft/bottom_sheet.dart';
+import 'package:evanston_draft/event_object.dart';
+import 'package:evanston_draft/event_popup.dart';
 import 'package:evanston_draft/filtersheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,19 +74,35 @@ class HomeScreenBody extends StatefulWidget {
   State<StatefulWidget> createState() => HomeScreenBodyState();
 }
 class HomeScreenBodyState extends State<HomeScreenBody> {
-  @override
   Completer<GoogleMapController> controllerCompleter = Completer();
+  @override
   Widget build(BuildContext context) {
+    Set<Marker> eventMarkers = Set();
+    for(int i = 0; i < eventList.length; i++) {
+      EventObject event = eventList[i];
+      eventMarkers.add(
+          Marker(
+            markerId: MarkerId(event.title),
+            position: LatLng(event.latitude, event.longitude),
+            onTap: () {
+              showDialog(context: context, builder: (context) {
+                return EventPopup(event);
+              },);
+            }
+          )
+      );
+    }
      return GoogleMap(
        initialCameraPosition: CameraPosition(
-         bearing: 192.8334901395799,
-         target: LatLng(42.0451, 87.6877),
-         tilt: 59.440717697143555,
-         zoom: 19.151926040649414,
+         bearing: 0,
+         target: LatLng(42.0534, -87.6737),
+         tilt: 30,
+         zoom: 15.6,
        ),
        onMapCreated: (GoogleMapController _googleMapController) {
          controllerCompleter.complete(_googleMapController);
        },
+       markers: eventMarkers,
      );
   }
 }

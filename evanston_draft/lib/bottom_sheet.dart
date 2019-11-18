@@ -1,3 +1,5 @@
+import 'package:evanston_draft/EventMockData.dart';
+import 'package:evanston_draft/event_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 List<String> eventNames = ["Event1", "Event2", "Event3", "Event4"];
@@ -12,9 +14,8 @@ class BottomSheetState extends State<BottomSheetWidget> {
     return ListView.builder(
       itemCount: eventNames.length,
       itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(eventNames[index]),
-          subtitle: Text(eventDescriptions[index]),
+        return EventCard(
+          eventList[index]
         );
       },
     );
