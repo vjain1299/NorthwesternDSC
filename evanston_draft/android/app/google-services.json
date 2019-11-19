@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1054207866487",
+    "firebase_url": "https://evanston-bb7a6.firebaseio.com",
+    "project_id": "evanston-bb7a6",
+    "storage_bucket": "evanston-bb7a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054207866487:android:5d339a7f494c7ae9b07872",
+        "android_client_info": {
+          "package_name": "kas.evanston_draft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054207866487-g4aci1r4fbi5cfba5vrm3iakp9057a4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7OQ-ON1aVmiW8FhdQNW-RuP1nqnylB8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054207866487-g4aci1r4fbi5cfba5vrm3iakp9057a4v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

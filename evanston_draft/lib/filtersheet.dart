@@ -1,3 +1,4 @@
+import 'package:evanston_draft/EventMockData.dart';
 import 'package:flutter/material.dart';
 List<String> appliedFiltersList = [];
 List<String> allFiltersList = ['Social', 'Music', 'Food', 'Academic'];
@@ -9,7 +10,7 @@ class FilterSheet extends StatefulWidget {
   }
 }
 class FilterSheetState extends State<FilterSheet> {
-  var filters;
+  List<String> filters;
   FilterSheetState(this.filters);
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,12 @@ class FilterSheetState extends State<FilterSheet> {
                 ),
                 onPressed: () {
                   filters.add(allFiltersList[index]);
+                  eventList.clear();
+                  for(int i = 0; i < allEvents.length; i++) {
+                    if(filters.contains(allEvents[i].typeOfEvent)) {
+                      eventList.add(allEvents[i]);
+                    }
+                  }
                   setState(() {});
                 },
               )
