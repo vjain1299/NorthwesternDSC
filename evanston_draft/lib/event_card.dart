@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:evanston_draft/event_object.dart';
 import 'package:evanston_draft/event_popup.dart';
 import 'package:flutter/material.dart';
@@ -20,93 +21,105 @@ class EventCardState extends State<EventCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-        elevation: 10,
-        color: event.typeOfEvent == 'Academic'
-            ? Color.fromRGBO(12, 31, 35, 1.0)
-            : event.typeOfEvent == 'Social'
-                ? Color(0xccecf7)
-                : event.typeOfEvent == 'Music'
-                    ? Color(0xffddb0)
-                    : event.typeOfEvent == 'Food'
-                        ? Color(0xc3b2f3)
-                        : Colors.black,
-        child: GestureDetector(
-          onTap: () {
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return EventPopup(event);
-                });
-          },
-          child: Stack(
-            children: <Widget>[
-              Image(
-                image: NetworkImage(event.imageUrl, scale: 0.9),
-                width: double.maxFinite,
-                color: Colors.black54,
-                colorBlendMode: BlendMode.darken,
-              ),
-              Container(
-                margin: EdgeInsets.all(8.0),
-                width: double.maxFinite,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Column(
+    return
+      Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              event.imageUrl, scale: 0.9,
+            ),
+            alignment: Alignment(0,0),
+            fit: BoxFit.fill,
+            colorFilter: ColorFilter.mode(Colors.black12, BlendMode.darken),
+          ),
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Card(
+            color: Colors.transparent,
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+            elevation: 10,
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return EventPopup(event);
+                    });
+              },
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    color: Colors.transparent,
+                    height: 200,
+                    margin: EdgeInsets.all(8.0),
+                    width: double.maxFinite,
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.all(4),
-                          width: 300,
-                          child: Text(
-                            event.title,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.italic,
-                                fontSize: 30,
-                                color: Colors.white),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(4),
-                          width: 300,
-                          child: Text(
-                            event.host,
-                            style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontSize: 26,
-                                color: Colors.white),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(4),
-                          width: 300,
-                          child: Text(
-                            event.startTime,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                                color: Colors.white),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(4),
-                          width: 300,
-                          child: Text(
-                            event.address,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                                color: Colors.white),
-                            textAlign: TextAlign.left,
-                          ),
-                        )
-                        /* ListTile(
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.all(4),
+                              width: 300,
+                              child: AutoSizeText(
+                                event.title,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 30,
+                                    color: Colors.white),
+                                textAlign: TextAlign.left,
+                                maxLines: 2,
+                                maxFontSize: 30,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.all(4),
+                              width: 300,
+                              child: AutoSizeText(
+                                event.host,
+                                style: TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 26,
+                                    color: Colors.white),
+                                textAlign: TextAlign.left,
+                                maxLines: 2,
+                                maxFontSize: 26,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.all(4),
+                              width: 300,
+                              child: AutoSizeText(
+                                event.startTime,
+                                overflow: TextOverflow.fade,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 24,
+                                    color: Colors.white),
+                                textAlign: TextAlign.left,
+                                maxLines: 1,
+                                maxFontSize: 24,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.all(4),
+                              width: 300,
+                              child: Text(
+                                event.address,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                    color: Colors.white),
+                                textAlign: TextAlign.left,
+                                maxLines: 1,
+                              ),
+                            )
+                            /* ListTile(
                       title: Text('More'),
                       trailing: IconButton(
                         icon: Icon(Icons.favorite_border, color: Colors.black,),
@@ -116,12 +129,12 @@ class EventCardState extends State<EventCard> {
                         },
                       ),
                     ) */
+                          ],
+                        )
                       ],
-                    )
-                  ],
-                ),
-              ),
-            ], /* InkWell(
+                    ),
+                  ),
+                ], /* InkWell(
         highlightColor: Colors.white,
         onTap: () {
           /* Navigator.of(context).push(
@@ -135,7 +148,8 @@ class EventCardState extends State<EventCard> {
             return EventPopup(event);
           });
         }, */
-          ),
-        ));
+              ),
+            )),
+      );
   }
 }

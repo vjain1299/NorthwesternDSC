@@ -20,51 +20,52 @@ class EventPopup extends StatelessWidget {
       content: Container(
         height: 200,
         width: double.maxFinite,
-        child: Column(
-          children: <Widget>[
-            Text(
-              event.title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                fontSize: 30,
-                fontStyle: FontStyle.italic
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Text(
+                event.title,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 30,
+                    fontStyle: FontStyle.italic
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            Divider(height: 10,),
-            Text(event.host,
-              style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 24),
-              textAlign: TextAlign.center,
-            ),
-            Divider(),
-            Text(event.startTime,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
-              textAlign: TextAlign.center,
-            ),
-            Text(event.address,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
-              textAlign: TextAlign.center,
-            ),
-            Divider(),
-            Text(event.details,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20),
-              textAlign: TextAlign.center,
-            ),
-            //rowsBuilder(['Host:', 'Date:', 'Time:', 'Address:', 'Details:'], [event.host, event.date, event.startTime, event.address, event.details??'N/A'])
+              Divider(height: 10,),
+              Text(event.host,
+                style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 24),
+                textAlign: TextAlign.center,
+              ),
+              Divider(),
+              Text(event.startTime,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
+              Text(event.address,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
+              Divider(),
+              Text(event.details,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15),
+                textAlign: TextAlign.center,
+              ),
+              //rowsBuilder(['Host:', 'Date:', 'Time:', 'Address:', 'Details:'], [event.host, event.date, event.startTime, event.address, event.details??'N/A'])
 //            ListTile(
 //              leading: Text('Host:', style: TextStyle(color: Colors.black)),
 //              title: Text(event.host, style: TextStyle(color: Colors.black),),
@@ -85,7 +86,8 @@ class EventPopup extends StatelessWidget {
 //              leading: Text('Details:', style: TextStyle(color: Colors.black)),
 //              title: Text(event.details == null? 'N/A' : event.details , style: TextStyle(color: Colors.black),),
 //            ),
-          ],
+            ],
+          ),
         )
       )
     );
